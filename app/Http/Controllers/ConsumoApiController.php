@@ -11,12 +11,20 @@ class ConsumoApiController extends Controller
             // Base URI is used with relative requests
             'base_uri' => 'https://fakestoreapi.com/',
             // You can set any number of default request options.
-            'timeout'  => 2.0
+            'timeout'  => 10.0
         ]);
             $response = $client->request('GET', 'products?limit=5');
 
+            $responseId = $client->request('GET', 'products/7');
+
             $produtos = json_decode( $response->getBody()->getContents() );
 
-            return view('produtos.index', compact('produtos'));
+            $produtoAvulso = json_decode( $responseId->getBody()->getContents() );
+
+            $total = array_sum(array_column($produtos, 'price'));
+
+            $desconto = array_sum(array_column($produtos, 'price')) * 0.2;
+
+            return view('produtos.index', compact('produtoAvulso','produtos', 'total', 'desconto'));
     }
 }
