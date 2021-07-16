@@ -65,22 +65,24 @@
 </div>
 
 <div class="col-4">
-<form method="GET">
+<form action="{{url('/resultado')}}" method="GET">
+@csrf
 <p style="font-weight:bold;">Calcule a entrega</p>
 <p>Insira o CEP de entrega para simular o frete</p>
 
 <input type="number" id="cep" name="cep" />
 <
 <input type="submit" value="CALCULAR" />
-    </form>
+</form>
+
     <hr>
 
     <form>
     <p style="font-weight:bold;">Resumo do pedido</p>
     <p>Abaixo você pode conferir os valores do seu pedido e finalizar sua compra.</p>
 
-    <div id="subt">Subtotal: R${{$total + $produtoAvulso->price + $produtoAvulso->price}}</div>
-    <div id="desc">Descontos: R${{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2) + $produtoAvulso->price * 0.2}}</div>
+    <div id="subt">Subtotal: R${{$total + $produtoAvulso->price}}</div>
+    <div id="desc">Descontos: R${{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2)}}</div>
     <div id="total">Total: R${{$valorTotal = $total - $totalDesconto}}</div><br />
     </form>
     <button class="btn btn-primary" onClick={registrarProduto()}>FINALIZAR COMPRA</button>
@@ -101,55 +103,23 @@ function registrarProduto() {
 
   </div>
 
-  <div class="quantity2">
-    <button class="btn minus-btn2 disabled">-</button>
-      <input type="text" id="quantity2" value="1" />
-    <button class="btn plus-btn2">+</button>
+  <div class="quantity">
+    <button class="btn minus-btn disabled">-</button>
+      <input type="text" id="quantity" value="1" />
+    <button class="btn plus-btn">+</button>
   </div>
-
-  <script>
-
-    document.querySelector('.minus-btn2').setAttribute("disabled", "disabled");
-    let valueCount2;
-
-    function priceTotal2() {
-        let total3 = valueCount2 * {{$produtoAvulso->price}};
-        document.getElementById("total").innerText = "TOTAL: R$" + total3;
-
-    }
-    document.querySelector('.plus-btn2').addEventListener("click", function(){
-        valueCount2 = document.getElementById("quantity2").value;
-        valueCount2++;
-        document.getElementById("quantity2").value = valueCount2;
-        if(valueCount2 > 1) {
-            document.querySelector(".minus-btn2").removeAttribute("disabled");
-            document.querySelector(".minus-btn2").classList.remove("disabled");
-        }
-        priceTotal2()
-    })
-    document.querySelector('.minus-btn2').addEventListener("click", function(){
-        valueCount2 = document.getElementById("quantity2").value;
-        valueCount2--;
-        document.getElementById("quantity2").value = valueCount2;
-        if(valueCount2 == 1) {
-            document.querySelector(".minus-btn2").setAttribute("disabled", "disabled");
-        }
-        priceTotal2()
-    })
-
-    </script>
 
   <table style="border:1px solid gray;">
   <div class="row justify-content-left">
     <div class="col-md-6">
-  <div class="row">
+    <div class="row">
     <div class="col-sm d-flex justify-content-center"><p><img src='{{$produtoAvulso->image}}' width='100' height='100' /></p></div>
 
     <div class="col-sm"><p>{{$produtoAvulso->title}}</p></div>
 
     <div class="col-sm d-flex justify-content-center"><p style="font-weight:bold;">
-    Desconto: R${{$produtoAvulso->price * 0.2}}</p>
-    Preço: R${{$produtoAvulso->price}}</div>
+    Desconto: R${{$valorDescPorItem = $produtoAvulso->price * 0.2}}<br/>
+    Preço: R${{$produtoAvulso->price}}</p></div>
 </div>
 </div>
 </div>
@@ -165,12 +135,13 @@ let valueCount;
 function priceTotal() {
     let total = valueCount * {{$total}};
     let subtotal = valueCount * {{$total + $produtoAvulso->price}};
-    let descontos = valueCount * {{$totalDesconto}};
+    let descontos = valueCount * {{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2)}};
     let total2 = valueCount * {{$valorTotal}}
+    let totalAvulso = valueCount * {{$valorTotal = $total - $totalDesconto}}
     document.getElementById("price").innerText = "TOTAL: R$" + total;
     document.getElementById("subt").innerText = "Subtotal: R$" + subtotal;
     document.getElementById("desc").innerText = "Descontos: R$" + descontos;
-    document.getElementById("total").innerText = "Total: R$" + total2;
+    document.getElementById("total").innerText = "Total: R$" + total2;    
 }
 document.querySelector('.plus-btn').addEventListener("click", function(){
     valueCount = document.getElementById("quantity").value;

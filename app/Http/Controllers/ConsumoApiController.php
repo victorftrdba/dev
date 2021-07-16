@@ -25,6 +25,6 @@ class ConsumoApiController extends Controller
 
             $desconto = array_sum(array_column($produtos, 'price')) * 0.2;
 
-            return view('produtos.index', compact('produtoAvulso','produtos', 'total', 'desconto'));
+            return view('produtos.index', compact('response', 'produtoAvulso','produtos', 'total', 'desconto'));
     }
 }
