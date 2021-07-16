@@ -65,12 +65,14 @@
 </div>
 
 <div class="col-4">
+<form method="GET">
 <p style="font-weight:bold;">Calcule a entrega</p>
 <p>Insira o CEP de entrega para simular o frete</p>
+
 <input type="number" id="cep" name="cep" />
 <
 <input type="submit" value="CALCULAR" />
-
+    </form>
     <hr>
 
     <form>

@@ -12,7 +12,8 @@
         "joelsonm/correios": "dev-master",
         "kaiorocha/frenet": "^2017.1",
         "laravel/framework": "^8.40",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "cagartner/correios-consulta": "0.1.*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
