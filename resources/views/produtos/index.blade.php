@@ -12,7 +12,6 @@
           <b>🔒 Site Seguro</b>
         </div>
       </nav>
-    <script type="text/javascript" src="<?php echo asset('/js/itemsPrice.js')?>"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Congelados da Sônia</title>
@@ -30,12 +29,16 @@
             <div class="col-6 col-md-4 d-flex justify-content-center">Meu Kit</div>
             <div class="col-6 col-md-4">
 
-              <a class="btn-retira">-</a>
-                <input max="9" style="width:50px;" class="col quantidade" value="0" type="number" id="" />
-              <a class="btn-incrementa">+</a>
+            <div class="quantity">
+              <button class="btn minus-btn disabled">-</button>
+                <input type="text" id="quantity" value="1" />
+              <button class="btn plus-btn">+</button>
+            </div>
 
             </div>
-            <div class="col-6 col-md-4 d-flex justify-content-center" id="precoTotal"><b>TOTAL: R${{$total}}</b></div>
+            <div class="col-6 col-md-4 d-flex justify-content-center" id="precoTotal">
+                <span id="price">TOTAL: R${{$total}}</span>
+            </div>
           </div>
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 </button>
@@ -62,13 +65,11 @@
 </div>
 
 <div class="col-4">
-    <p style="font-weight:bold;">Calcule a entrega</p>
-    <p>Insira o CEP de entrega para simular o frete</p>
-
-    <form action="" method="GET">
-    <input type="number" id="cep" name="cep" />
-    < <input type="submit" value="CALCULAR" />
-    </form>
+<p style="font-weight:bold;">Calcule a entrega</p>
+<p>Insira o CEP de entrega para simular o frete</p>
+<input type="number" id="cep" name="cep" />
+<
+<input type="submit" value="CALCULAR" />
 
     <hr>
 
@@ -76,31 +77,65 @@
     <p style="font-weight:bold;">Resumo do pedido</p>
     <p>Abaixo você pode conferir os valores do seu pedido e finalizar sua compra.</p>
 
-    <div id="subt">Subtotal: R${{$total + $produtoAvulso->price}}<br />
-    </div>
-    <div id="desc">Descontos: R${{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2)}}<br />
-    </div>
-    <div id="total">Total: R${{$valorTotal = $total - $totalDesconto}}<br /><br />
-    </div>
+    <div id="subt">Subtotal: R${{$total + $produtoAvulso->price + $produtoAvulso->price}}</div>
+    <div id="desc">Descontos: R${{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2) + $produtoAvulso->price * 0.2}}</div>
+    <div id="total">Total: R${{$valorTotal = $total - $totalDesconto}}</div><br />
     </form>
     <button class="btn btn-primary" onClick={registrarProduto()}>FINALIZAR COMPRA</button>
 
-    <script>
-
+<script>
 function registrarProduto() {
   registrar = [
-    subTotal => '{{$total}}',
-    desconto => '{{$totalDesconto}}',
-    valorTotal => '{{$valorTotal}}'
+      total => '{{$total}}',
+    subTotal => '{{$total + $produtoAvulso->price + $produtoAvulso->price}}',
+    desconto => '{{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2) + $produtoAvulso->price * 0.2}}',
+    valorTotal => '{{$valorTotal = $total - $totalDesconto}}'
   ];
 
   console.log(registrar)
   return false
 }
-
 </script>
 
   </div>
+
+  <div class="quantity2">
+    <button class="btn minus-btn2 disabled">-</button>
+      <input type="text" id="quantity2" value="1" />
+    <button class="btn plus-btn2">+</button>
+  </div>
+
+  <script>
+
+    document.querySelector('.minus-btn2').setAttribute("disabled", "disabled");
+    let valueCount2;
+
+    function priceTotal2() {
+        let total3 = valueCount2 * {{$produtoAvulso->price}};
+        document.getElementById("total").innerText = "TOTAL: R$" + total3;
+
+    }
+    document.querySelector('.plus-btn2').addEventListener("click", function(){
+        valueCount2 = document.getElementById("quantity2").value;
+        valueCount2++;
+        document.getElementById("quantity2").value = valueCount2;
+        if(valueCount2 > 1) {
+            document.querySelector(".minus-btn2").removeAttribute("disabled");
+            document.querySelector(".minus-btn2").classList.remove("disabled");
+        }
+        priceTotal2()
+    })
+    document.querySelector('.minus-btn2').addEventListener("click", function(){
+        valueCount2 = document.getElementById("quantity2").value;
+        valueCount2--;
+        document.getElementById("quantity2").value = valueCount2;
+        if(valueCount2 == 1) {
+            document.querySelector(".minus-btn2").setAttribute("disabled", "disabled");
+        }
+        priceTotal2()
+    })
+
+    </script>
 
   <table style="border:1px solid gray;">
   <div class="row justify-content-left">
@@ -111,14 +146,51 @@ function registrarProduto() {
     <div class="col-sm"><p>{{$produtoAvulso->title}}</p></div>
 
     <div class="col-sm d-flex justify-content-center"><p style="font-weight:bold;">
-    Desconto: R${{$produtoAvulso->price * 0.2}}<br/>
-    Preço: R${{$produtoAvulso->price}}</p></div>
+    Desconto: R${{$produtoAvulso->price * 0.2}}</p>
+    Preço: R${{$produtoAvulso->price}}</div>
 </div>
 </div>
 </div>
 </table>
 
 </div>
+
+<script>
+
+document.querySelector('.minus-btn').setAttribute("disabled", "disabled");
+let valueCount;
+
+function priceTotal() {
+    let total = valueCount * {{$total}};
+    let subtotal = valueCount * {{$total + $produtoAvulso->price}};
+    let descontos = valueCount * {{$totalDesconto}};
+    let total2 = valueCount * {{$valorTotal}}
+    document.getElementById("price").innerText = "TOTAL: R$" + total;
+    document.getElementById("subt").innerText = "Subtotal: R$" + subtotal;
+    document.getElementById("desc").innerText = "Descontos: R$" + descontos;
+    document.getElementById("total").innerText = "Total: R$" + total2;
+}
+document.querySelector('.plus-btn').addEventListener("click", function(){
+    valueCount = document.getElementById("quantity").value;
+    valueCount++;
+    document.getElementById("quantity").value = valueCount;
+    if(valueCount > 1) {
+        document.querySelector(".minus-btn").removeAttribute("disabled");
+        document.querySelector(".minus-btn").classList.remove("disabled");
+    }
+    priceTotal()
+})
+document.querySelector('.minus-btn').addEventListener("click", function(){
+    valueCount = document.getElementById("quantity").value;
+    valueCount--;
+    document.getElementById("quantity").value = valueCount;
+    if(valueCount == 1) {
+        document.querySelector(".minus-btn").setAttribute("disabled", "disabled");
+    }
+    priceTotal()
+})
+
+</script>
 </body>
 
 </html>
