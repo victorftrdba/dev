@@ -44,16 +44,16 @@
                 </button>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-@foreach($produtos as $produto)
+@foreach($products as $product)
 
 <div class="row">
-    <div class="col-sm d-flex justify-content-center"><p><img src='{{$produto->image}}' width='100' height='100' /></p></div>
+    <div class="col-sm d-flex justify-content-center"><p><img src='{{$product->image}}' width='100' height='100' /></p></div>
 
-    <div class="col-sm"><p>{{$produto->title}}</p></div>
+    <div class="col-sm"><p>{{$product->title}}</p></div>
 
     <div class="col-sm d-flex justify-content-center"><p style="font-weight:bold;">
-        <s style="color:rgb(100, 100, 100)">Desconto: R${{number_format((float)$valorDescPorItem = $produto->price * 0.2, 2, ',', '')}}</s><br/>
-    Preço: R${{number_format((float)$produto->price, 2, ',', '')}}</p></div>
+        <s style="color:rgb(100, 100, 100)">Desconto: R${{number_format((float)$discValuePerItem = $product->price * 0.2, 2, ',', '')}}</s><br/>
+    Preço: R${{number_format((float)$product->price, 2, ',', '')}}</p></div>
 </div>
 
 @endforeach
@@ -77,13 +77,13 @@
   <div class="row justify-content-center">
     <div class="container">
     <div class="row" style="border:1px solid rgb(209, 213, 214);border-radius:2px;">
-    <div class="col-sm d-flex justify-content-center"><p><img src='{{$produtoAvulso->image}}' width='100' height='100' /></p></div>
+    <div class="col-sm d-flex justify-content-center"><p><img src='{{$singleProduct->image}}' width='100' height='100' /></p></div>
 
-    <div class="col-sm"><p>{{$produtoAvulso->title}}</p></div>
+    <div class="col-sm"><p>{{$singleProduct->title}}</p></div>
 
     <div class="col"><p style="font-weight:bold;">
-    <s style="color:rgb(100, 100, 100)">Desconto: R${{number_format((float)$valorDescPorItem = $produtoAvulso->price * 0.2, 2, ',', '')}}</s><br/>
-    Preço: R${{number_format((float)$produtoAvulso->price, 2, ',', '')}}</p></div>
+    <s style="color:rgb(100, 100, 100)">Desconto: R${{number_format((float)$discValuePerItem = $singleProduct->price * 0.2, 2, ',', '')}}</s><br/>
+    Preço: R${{number_format((float)$singleProduct->price, 2, ',', '')}}</p></div>
 </div>
 </div>
 </div>
@@ -107,9 +107,9 @@
     <p style="font-weight:bold;">Resumo do pedido</p>
     <p>Abaixo você pode conferir os valores do seu pedido e finalizar sua compra.</p>
 
-    <div id="subt">Subtotal: R${{number_format((float)$total + $produtoAvulso->price, 2, ',', '')}}</div>
-    <div id="desc">Descontos: R${{number_format((float)$totalDesconto = $desconto + ($produtoAvulso->price * 0.2), 2, ',', '')}}</div>
-    <div id="total">Total: R${{number_format((float)$valorTotal = ($produtoAvulso->price + $total) - $totalDesconto, 2, ',', '')}}</div><br />
+    <div id="subt">Subtotal: R${{number_format((float)$total + $singleProduct->price, 2, ',', '')}}</div>
+    <div id="desc">Descontos: R${{number_format((float)$discTotal = $discount + ($singleProduct->price * 0.2), 2, ',', '')}}</div>
+    <div id="total">Total: R${{number_format((float)$valueTotal = ($singleProduct->price + $total) - $discTotal, 2, ',', '')}}</div><br />
     </form>
     <button class="btn btn-primary" onClick={registrarProduto()}>FINALIZAR COMPRA</button>
 
@@ -124,12 +124,12 @@ let valueCount;
 
 function priceTotal() {
     let total = valueCount * {{$total}};
-    let subtotal = valueCount * {{$total + $produtoAvulso->price}};
-    let descontos = valueCount * {{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2)}};
-    let total2 = valueCount * {{$valorTotal + $produtoAvulso->price}}
+    let subtotal = valueCount * {{$total + $singleProduct->price}};
+    let discounts = valueCount * {{$discTotal = $discount + ($singleProduct->price * 0.2)}};
+    let total2 = valueCount * {{$valueTotal + $singleProduct->price}}
     document.getElementById("price").innerText = "TOTAL: R$" + parseFloat(total).toFixed(2);
     document.getElementById("subt").innerText = "Subtotal: R$" + parseFloat(subtotal).toFixed(2);
-    document.getElementById("desc").innerText = "Descontos: R$" + parseFloat(descontos).toFixed(2);
+    document.getElementById("desc").innerText = "Descontos: R$" + parseFloat(discounts).toFixed(2);
     document.getElementById("total").innerText = "Total: R$" + parseFloat(total2).toFixed(2);
 }
 document.querySelector('.plus-btn').addEventListener("click", function(){
@@ -156,21 +156,20 @@ document.querySelector('.minus-btn').addEventListener("click", function(){
 
 <script>
     function registrarProduto() {
-        let totalCompra = document.getElementById('total').innerHTML
-        let descontosCompra = document.getElementById('desc').innerHTML
-        let subTotalCompra = document.getElementById('subt').innerHTML
-        let totalCompraKit = document.getElementById('price').innerHTML
-      registrar = [{
-        'Total da Compra': totalCompra,
-        'Subtotal da Compra': subTotalCompra,
-        'Descontos aplicados': descontosCompra,
-        'Total do Kit': totalCompraKit
+        let totalPurchase = document.getElementById('total').innerHTML
+        let discountsPurchase = document.getElementById('desc').innerHTML
+        let subtotalPurchase = document.getElementById('subt').innerHTML
+        let kitPurchaseTotal = document.getElementById('price').innerHTML
+      register = [{
+        'Total da Compra': totalPurchase,
+        'Subtotal da Compra': discountsPurchase,
+        'Descontos aplicados': subtotalPurchase,
+        'Total do Kit': kitPurchaseTotal
       }];
 
-      console.log(registrar)
+      console.log(register)
     }
 </script>
 
 </body>
-
 </html>

@@ -17,14 +17,14 @@ class ConsumoApiController extends Controller
 
             $responseId = $client->request('GET', 'products/7');
 
-            $produtos = json_decode( $response->getBody()->getContents() );
+            $products = json_decode( $response->getBody()->getContents() );
 
-            $produtoAvulso = json_decode( $responseId->getBody()->getContents() );
+            $singleProduct = json_decode( $responseId->getBody()->getContents() );
 
-            $total = array_sum(array_column($produtos, 'price'));
+            $total = array_sum(array_column($products, 'price'));
 
-            $desconto = array_sum(array_column($produtos, 'price')) * 0.2;
+            $discount = array_sum(array_column($products, 'price')) * 0.2;
 
-            return view('produtos.index', compact('response', 'produtoAvulso','produtos', 'total', 'desconto'));
+            return view('produtos.index', compact('response', 'singleProduct','products', 'total', 'discount'));
     }
 }
