@@ -8,9 +8,7 @@ class ConsumoApiController extends Controller
 {
     public function index() {
         $client = new Client([
-            // Base URI is used with relative requests
             'base_uri' => 'https://fakestoreapi.com/',
-            // You can set any number of default request options.
             'timeout'  => 10.0
         ]);
             $response = $client->request('GET', 'products?limit=5');

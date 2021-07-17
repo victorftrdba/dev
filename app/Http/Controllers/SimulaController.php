@@ -8,9 +8,7 @@ class SimulaController extends Controller
 {
     public function simula(Request $request) {
         $client = new Client([
-            // Base URI is used with relative requests
             'base_uri' => 'https://viacep.com.br/ws/'.$request->input('cep'),
-            // You can set any number of default request options.
             'timeout'  => 10.0
         ]);
 
