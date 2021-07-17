@@ -68,7 +68,7 @@
     <div class="col-6 col-md-4">
         <div class="quantity">
             <button class="btn minus-btn disabled">-</button>
-              <input type="text" style="margin:20px;width:18px;"id="quantity" value="1" />
+              <input type="text" style="margin:20px;width:18px;" id="quantity" value="1" />
             <button class="btn plus-btn">+</button>
         </div>
     </div>
@@ -91,7 +91,7 @@
 
 
 <div class="col-4">
-<form action="{{url('/resultado')}}" method="get">
+<form action="{{url('/resultado')}}" method="get" onsubmit="target_popup(this)">
 
 <p style="font-weight:bold;">Calcule a entrega</p>
 <p>Insira o CEP de entrega para simular o frete</p>
@@ -121,7 +121,6 @@
 
 document.querySelector('.minus-btn').setAttribute("disabled", "disabled");
 let valueCount;
-
 function priceTotal() {
     let total = valueCount * {{$total}};
     let subtotal = valueCount * {{$total + $singleProduct->price}};
@@ -151,6 +150,11 @@ document.querySelector('.minus-btn').addEventListener("click", function(){
     }
     priceTotal()
 })
+
+function target_popup(form) {
+    window.open('', 'formpopup', 'width=400,height=400,resizeable,scrollbars');
+    form.target = 'formpopup';
+}
 
 </script>
 
