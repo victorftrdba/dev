@@ -66,10 +66,10 @@
     <div class="col-6 col-md-4 d-flex justify-content-center">
     </div>
     <div class="col-6 col-md-4">
-        <div class="quantity">
-            <button class="btn minus-btn disabled">-</button>
-              <input type="text" style="margin:20px;width:18px;" id="quantity" value="1" />
-            <button class="btn plus-btn">+</button>
+        <div class="quantity2">
+            <button class="btn minus-btn2 disabled">-</button>
+              <input type="text" style="margin:20px;width:18px;" id="quantity2" value="1" />
+            <button class="btn plus-btn2">+</button>
         </div>
     </div>
   </div>
@@ -156,6 +156,38 @@ function target_popup(form) {
     form.target = 'formpopup';
 }
 
+</script>
+
+<script>
+document.querySelector('.minus-btn2').setAttribute("disabled", "disabled");
+let valueCount2;
+function priceTotal2() {
+    let totalPurchaseWithSingle = valueCount * valueCount2 * {{$singleProduct->price}}
+    let totalPurchaseWithDiscSingle = valueCount * valueCount2 * {{$discValuePerItem}}
+    let totalPurchaseSingle = valueCount * valueCount2 * {{$valueTotal + $singleProduct->price}}
+    document.getElementById("subt").innerText = "Subtotal: R$" + parseFloat(totalPurchaseWithSingle).toFixed(2);
+    document.getElementById("desc").innerText = "Descontos: R$" + parseFloat(totalPurchaseWithDiscSingle).toFixed(2);
+    document.getElementById("total").innerText = "Total: R$" + parseFloat(totalPurchaseSingle).toFixed(2);
+}
+document.querySelector('.plus-btn2').addEventListener("click", function(){
+    valueCount2 = document.getElementById("quantity2").value;
+    valueCount2++;
+    document.getElementById("quantity2").value = valueCount2;
+    if(valueCount2 > 1) {
+        document.querySelector(".minus-btn2").removeAttribute("disabled");
+        document.querySelector(".minus-btn2").classList.remove("disabled");
+    }
+    priceTotal2()
+})
+document.querySelector('.minus-btn2').addEventListener("click", function(){
+    valueCount2 = document.getElementById("quantity2").value;
+    valueCount2--;
+    document.getElementById("quantity2").value = valueCount2;
+    if(valueCount2 == 1) {
+        document.querySelector(".minus-btn2").setAttribute("disabled", "disabled");
+    }
+    priceTotal2()
+})
 </script>
 
 <script>
