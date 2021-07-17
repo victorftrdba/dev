@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dd68a4c58a9d56fb3692ecdffb99793",
+    "content-hash": "36b749d2de4b377018a0ddc1d076b795",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -120,21 +120,21 @@
         },
         {
             "name": "cagartner/correios-consulta",
-            "version": "0.1.14",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cagartner/correios-consulta.git",
-                "reference": "9f61b92c0060df5832e96447ad8b5dfda2790d4e"
+                "reference": "c11213015c46362d2ef579f54eae341a82079316"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cagartner/correios-consulta/zipball/9f61b92c0060df5832e96447ad8b5dfda2790d4e",
-                "reference": "9f61b92c0060df5832e96447ad8b5dfda2790d4e",
+                "url": "https://api.github.com/repos/cagartner/correios-consulta/zipball/c11213015c46362d2ef579f54eae341a82079316",
+                "reference": "c11213015c46362d2ef579f54eae341a82079316",
                 "shasum": ""
             },
             "require": {
-                "cagartner/phpquery": "0.9.8",
-                "php": ">=5.3.0"
+                "cagartner/phpquery": "0.9.11",
+                "php": ">=7.3.0"
             },
             "type": "library",
             "extra": {
@@ -171,27 +171,27 @@
             ],
             "support": {
                 "issues": "https://github.com/cagartner/correios-consulta/issues",
-                "source": "https://github.com/cagartner/correios-consulta/tree/0.1.14"
+                "source": "https://github.com/cagartner/correios-consulta/tree/0.2.3"
             },
-            "time": "2020-01-31T18:20:39+00:00"
+            "time": "2020-09-11T16:40:09+00:00"
         },
         {
             "name": "cagartner/phpquery",
-            "version": "0.9.8",
+            "version": "0.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cagartner/phpquery.git",
-                "reference": "b05a099ba9db1fb158056672b8d9e46b5245e627"
+                "reference": "efd7f8d32bf6d21d910f9374df91775df3639ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cagartner/phpquery/zipball/b05a099ba9db1fb158056672b8d9e46b5245e627",
-                "reference": "b05a099ba9db1fb158056672b8d9e46b5245e627",
+                "url": "https://api.github.com/repos/cagartner/phpquery/zipball/efd7f8d32bf6d21d910f9374df91775df3639ddf",
+                "reference": "efd7f8d32bf6d21d910f9374df91775df3639ddf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "sabberworm/php-css-parser": "5.1.*"
+                "sabberworm/php-css-parser": "8.3.*"
             },
             "type": "library",
             "autoload": {
@@ -222,9 +222,58 @@
             "description": "PHP5.3+ namespaced version of phpQuery with enhanced CSS support",
             "homepage": "http://code.google.com/p/phpquery/",
             "support": {
-                "source": "https://github.com/cagartner/phpquery/tree/master"
+                "source": "https://github.com/cagartner/phpquery/tree/0.9.11"
             },
-            "time": "2014-07-18T16:15:43+00:00"
+            "time": "2019-10-25T13:34:48+00:00"
+        },
+        {
+            "name": "canducci/cep",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netdragoon/canduccicep.git",
+                "reference": "b30aa566db1bf6cdfbe31367b22a2d2791a7fd04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netdragoon/canduccicep/zipball/b30aa566db1bf6cdfbe31367b22a2d2791a7fd04",
+                "reference": "b30aa566db1bf6cdfbe31367b22a2d2791a7fd04",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.7"
+            },
+            "require-dev": {
+                "illuminate/support": "7.x-dev",
+                "phpspec/phpspec": "6.1.1",
+                "phpunit/phpunit": "8.5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Canducci\\Cep\\": "src/Canducci/Cep/"
+                },
+                "files": [
+                    "src/Canducci/Cep/Helpers/cep_helper.php",
+                    "src/Canducci/Cep/Helpers/uf_helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fulvio",
+                    "email": "fulviocanducci@hotmail.com"
+                }
+            ],
+            "description": "CEP do Brasil Web Service ViaCep (https://viacep.com.br)",
+            "support": {
+                "issues": "https://github.com/netdragoon/canduccicep/issues",
+                "source": "https://github.com/netdragoon/canduccicep/tree/v3.1.1"
+            },
+            "time": "2020-09-10T15:11:52+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -589,6 +638,68 @@
             "time": "2020-10-22T13:48:01+00:00"
         },
         {
+            "name": "flyingluscas/correios-php",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flyingluscas/correios-php.git",
+                "reference": "63e651dd68474b60a9aadfc680c16d89de7df952"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flyingluscas/correios-php/zipball/63e651dd68474b60a9aadfc680c16d89de7df952",
+                "reference": "63e651dd68474b60a9aadfc680c16d89de7df952",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~7.2|~6.5",
+                "php": "~5.6|~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7",
+                "squizlabs/php_codesniffer": "~3.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FlyingLuscas\\Correios\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucas Pires",
+                    "email": "lucas.pires.mattos@gmail.com",
+                    "homepage": "https://github.com/flyingluscas",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Uma maneira fácil de interagir com as principais funcionalidades dos Correios.",
+            "homepage": "https://github.com/flyingluscas/correios-php",
+            "keywords": [
+                "calculo",
+                "cep",
+                "correios",
+                "correios-php",
+                "flyingluscas",
+                "frete",
+                "rastreio"
+            ],
+            "support": {
+                "issues": "https://github.com/flyingluscas/correios-php/issues",
+                "source": "https://github.com/flyingluscas/correios-php/tree/v2.4.0"
+            },
+            "time": "2020-11-01T03:59:39+00:00"
+        },
+        {
             "name": "fruitcake/laravel-cors",
             "version": "v2.0.4",
             "source": {
@@ -733,44 +844,52 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.0",
+            "version": "7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
+                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0aa74dfb41ae110835923ef10a9d803a22d50e79",
+                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.4",
-                "php": ">=5.5"
+                "ext-json": "*",
+                "guzzlehttp/promises": "^1.4",
+                "guzzlehttp/psr7": "^1.7",
+                "php": "^7.2.5 || ^8.0",
+                "psr/http-client": "^1.0"
+            },
+            "provide": {
+                "psr/http-client-implementation": "1.0"
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0 || ^5.0",
-                "psr/log": "^1.0"
+                "php-http/client-integration-tests": "^3.0",
+                "phpunit/phpunit": "^8.5.5 || ^9.3.5",
+                "psr/log": "^1.1"
             },
             "suggest": {
+                "ext-curl": "Required for CURL handler support",
+                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "7.1-dev"
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions_include.php"
-                ],
                 "psr-4": {
                     "GuzzleHttp\\": "src/"
-                }
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -781,6 +900,11 @@
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://sagikazarmark.hu"
                 }
             ],
             "description": "Guzzle is a PHP HTTP client library",
@@ -791,14 +915,34 @@
                 "framework",
                 "http",
                 "http client",
+                "psr-18",
+                "psr-7",
                 "rest",
                 "web service"
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/master"
+                "source": "https://github.com/guzzle/guzzle/tree/7.2.0"
             },
-            "time": "2017-06-22T18:50:49+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/alexeyshockov",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/gmponos",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-10-10T11:47:56+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -929,47 +1073,6 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
             "time": "2021-04-26T09:17:50+00:00"
-        },
-        {
-            "name": "joelsonm/correios",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joelsonm/correios.git",
-                "reference": "efa8fdb580e38392c37b4029744c65e52f43788b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joelsonm/correios/zipball/efa8fdb580e38392c37b4029744c65e52f43788b",
-                "reference": "efa8fdb580e38392c37b4029744c65e52f43788b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Joelsonm\\Correios\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joelson",
-                    "email": "joelsonm@live.com"
-                }
-            ],
-            "description": "API dos Correios para Laravel",
-            "support": {
-                "issues": "https://github.com/joelsonm/correios/issues",
-                "source": "https://github.com/joelsonm/correios/tree/master"
-            },
-            "time": "2018-10-21T03:16:24+00:00"
         },
         {
             "name": "kaiorocha/frenet",
@@ -1249,16 +1352,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.6.5",
+            "version": "1.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "44ffd8d3c4a9133e4bd0548622b09c55af39db5f"
+                "reference": "c4228d11e30d7493c6836d20872f9582d8ba6dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/44ffd8d3c4a9133e4bd0548622b09c55af39db5f",
-                "reference": "44ffd8d3c4a9133e4bd0548622b09c55af39db5f",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c4228d11e30d7493c6836d20872f9582d8ba6dcf",
+                "reference": "c4228d11e30d7493c6836d20872f9582d8ba6dcf",
                 "shasum": ""
             },
             "require": {
@@ -1346,7 +1449,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-26T11:57:13+00:00"
+            "time": "2021-07-17T17:13:23+00:00"
         },
         {
             "name": "league/flysystem",
@@ -2048,6 +2151,58 @@
             "time": "2019-01-08T18:20:26+00:00"
         },
         {
+            "name": "psr/http-client",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-client.git",
+                "reference": "2dfb5f6c5eff0e91e20e913f8c5452ed95b86621"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
+                "reference": "2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP clients",
+            "homepage": "https://github.com/php-fig/http-client",
+            "keywords": [
+                "http",
+                "http-client",
+                "psr",
+                "psr-18"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client/tree/master"
+            },
+            "time": "2020-06-29T06:28:15+00:00"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
@@ -2491,20 +2646,24 @@
         },
         {
             "name": "sabberworm/php-css-parser",
-            "version": "5.1.3",
+            "version": "8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-                "reference": "d8453c394bde94809ee244bed4c6087f4fd5ffe1"
+                "reference": "d217848e1396ef962fb1997cf3e2421acba7f796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/d8453c394bde94809ee244bed4c6087f4fd5ffe1",
-                "reference": "d8453c394bde94809ee244bed4c6087f4fd5ffe1",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/d217848e1396ef962fb1997cf3e2421acba7f796",
+                "reference": "d217848e1396ef962fb1997cf3e2421acba7f796",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "codacy/coverage": "^1.4",
+                "phpunit/phpunit": "~4.8"
             },
             "type": "library",
             "autoload": {
@@ -2530,9 +2689,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
-                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/5.1.3"
+                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.3.1"
             },
-            "time": "2020-06-01T09:05:50+00:00"
+            "time": "2020-06-01T09:10:00+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7552,9 +7711,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "joelsonm/correios": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
