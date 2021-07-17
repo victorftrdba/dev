@@ -163,9 +163,9 @@ function target_popup(form) {
 document.querySelector('.minus-btn2').setAttribute("disabled", "disabled");
 let valueCount2;
 function priceTotal2() {
-    let totalPurchaseWithSingle = valueCount * valueCount2 * {{$singleProduct->price}}
-    let totalPurchaseWithDiscSingle = valueCount * valueCount2 * {{$discValuePerItem}}
-    let totalPurchaseSingle = valueCount * valueCount2 * {{$valueTotal + $singleProduct->price}}
+    let totalPurchaseWithSingle = valueCount2 * {{$singleProduct->price}}
+    let totalPurchaseWithDiscSingle = valueCount2 * {{$discValuePerItem}}
+    let totalPurchaseSingle = valueCount2 * {{$singleProduct->price - $discValuePerItem}}
     document.getElementById("subt").innerText = "Subtotal: R$" + parseFloat(totalPurchaseWithSingle).toFixed(2);
     document.getElementById("desc").innerText = "Descontos: R$" + parseFloat(totalPurchaseWithDiscSingle).toFixed(2);
     document.getElementById("total").innerText = "Total: R$" + parseFloat(totalPurchaseSingle).toFixed(2);
