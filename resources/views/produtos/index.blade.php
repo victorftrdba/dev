@@ -111,7 +111,7 @@
     <div id="desc">Descontos: R${{number_format((float)$discTotal = $discount + ($singleProduct->price * 0.2), 2, ',', '')}}</div>
     <div id="total">Total: R${{number_format((float)$valueTotal = ($singleProduct->price + $total) - $discTotal, 2, ',', '')}}</div><br />
     </form>
-    <button class="btn btn-primary" onClick={productRegister()}>FINALIZAR COMPRA</button>
+    <button class="btn btn-primary" onClick={purchaseRegister()}>FINALIZAR COMPRA</button>
 
   </div>
 
@@ -155,7 +155,7 @@ document.querySelector('.minus-btn').addEventListener("click", function(){
 </script>
 
 <script>
-    function productRegister() {
+    function purchaseRegister() {
         let totalPurchase = document.getElementById('total').innerHTML
         let discountsPurchase = document.getElementById('desc').innerHTML
         let subtotalPurchase = document.getElementById('subt').innerHTML
