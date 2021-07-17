@@ -36,7 +36,9 @@
         ->origin('82920080')
         ->destination($response->cep)
         ->services(Service::SEDEX, Service::PAC)
-        ->item(5, 5, 10, 0.8, 5) // largura, altura, comprimento, peso e quantidade
+        ->item(16, 16, 16, .3, 1) // largura, altura, comprimento, peso e quantidade
+        ->item(16, 16, 16, .3, 3) // largura, altura, comprimento, peso e quantidade
+        ->item(16, 16, 16, .3, 2) // largura, altura, comprimento, peso e quantidade
         ->calculate();
         $frete = $correios->freight()->calculate();
         $imprimeFrete = json_encode($frete);
@@ -50,9 +52,9 @@
                     }
             } else {
                 echo "Valor do Frete em SEDEX e PAC respectivamente<br/>";
-                    $valor = 25.90;
+                    $valor2 = 25.90;
                     foreach($fre as $f) {
-                        echo "R$".number_format((float)$f->price + $valor, 2, ',', '')."<br/>";
+                        echo "R$".number_format((float)$f->price + $valor2, 2, ',', '')."<br/>";
                     }
             }
         ?></td>
