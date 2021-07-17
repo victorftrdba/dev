@@ -29,10 +29,10 @@
         <td><?php
             if($response->localidade == 'Curitiba') {
                     $valor = 10;
-                    echo "R$".$valor."<br/>";
+                    echo "R$".number_format((float)$valor, 2, ',', '')."<br/>";
             } else {
                     $valor = 25.90;
-                    echo "R$".$valor."<br/>";
+                    echo "R$".number_format((float)$valor, 2, ',', '')."<br/>";
                 }
         ?></td>
       </tr>
