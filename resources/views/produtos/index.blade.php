@@ -31,13 +31,13 @@
 
             <div class="quantity">
               <button class="btn minus-btn disabled">-</button>
-                <input type="text" id="quantity" value="1" />
+                <input type="text" style="margin:20px;width:18px" id="quantity" value="1" />
               <button class="btn plus-btn">+</button>
             </div>
 
             </div>
             <div class="col-6 col-md-4 d-flex justify-content-center" id="precoTotal">
-                <span id="price">TOTAL: R${{$total}}</span>
+                <span id="price">TOTAL: R${{number_format((float)$total, 2, ',', '')}}</span>
             </div>
           </div>
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -52,8 +52,8 @@
     <div class="col-sm"><p>{{$produto->title}}</p></div>
 
     <div class="col-sm d-flex justify-content-center"><p style="font-weight:bold;">
-    Desconto: R${{$valorDescPorItem = $produto->price * 0.2}}<br/>
-    Preço: R${{$produto->price}}</p></div>
+        <s style="color:rgb(100, 100, 100)">Desconto: R${{number_format((float)$valorDescPorItem = $produto->price * 0.2, 2, ',', '')}}</s><br/>
+    Preço: R${{number_format((float)$produto->price, 2, ',', '')}}</p></div>
 </div>
 
 @endforeach
@@ -62,11 +62,37 @@
 </div>
 </div>
 </div>
+<div class="row">
+    <div class="col-6 col-md-4 d-flex justify-content-center">
+    </div>
+    <div class="col-6 col-md-4">
+        <div class="quantity">
+            <button class="btn minus-btn disabled">-</button>
+              <input type="text" style="margin:20px;width:18px;"id="quantity" value="1" />
+            <button class="btn plus-btn">+</button>
+        </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="container">
+    <div class="row" style="border:1px solid rgb(209, 213, 214);border-radius:2px;">
+    <div class="col-sm d-flex justify-content-center"><p><img src='{{$produtoAvulso->image}}' width='100' height='100' /></p></div>
+
+    <div class="col-sm"><p>{{$produtoAvulso->title}}</p></div>
+
+    <div class="col"><p style="font-weight:bold;">
+    <s style="color:rgb(100, 100, 100)">Desconto: R${{number_format((float)$valorDescPorItem = $produtoAvulso->price * 0.2, 2, ',', '')}}</s><br/>
+    Preço: R${{number_format((float)$produtoAvulso->price, 2, ',', '')}}</p></div>
+</div>
+</div>
+</div>
 </div>
 
+
 <div class="col-4">
-<form action="{{url('/resultado')}}" method="GET">
-@csrf
+<form action="{{url('/resultado')}}" method="get">
+
 <p style="font-weight:bold;">Calcule a entrega</p>
 <p>Insira o CEP de entrega para simular o frete</p>
 
@@ -81,49 +107,13 @@
     <p style="font-weight:bold;">Resumo do pedido</p>
     <p>Abaixo você pode conferir os valores do seu pedido e finalizar sua compra.</p>
 
-    <div id="subt">Subtotal: R${{$total + $produtoAvulso->price}}</div>
-    <div id="desc">Descontos: R${{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2)}}</div>
-    <div id="total">Total: R${{$valorTotal = $total - $totalDesconto}}</div><br />
+    <div id="subt">Subtotal: R${{number_format((float)$total + $produtoAvulso->price, 2, ',', '')}}</div>
+    <div id="desc">Descontos: R${{number_format((float)$totalDesconto = $desconto + ($produtoAvulso->price * 0.2), 2, ',', '')}}</div>
+    <div id="total">Total: R${{number_format((float)$valorTotal = ($produtoAvulso->price + $total) - $totalDesconto, 2, ',', '')}}</div><br />
     </form>
     <button class="btn btn-primary" onClick={registrarProduto()}>FINALIZAR COMPRA</button>
 
-<script>
-function registrarProduto() {
-  registrar = [
-      total => '{{$total}}',
-    subTotal => '{{$total + $produtoAvulso->price + $produtoAvulso->price}}',
-    desconto => '{{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2) + $produtoAvulso->price * 0.2}}',
-    valorTotal => '{{$valorTotal = $total - $totalDesconto}}'
-  ];
-
-  console.log(registrar)
-  return false
-}
-</script>
-
   </div>
-
-  <div class="quantity">
-    <button class="btn minus-btn disabled">-</button>
-      <input type="text" id="quantity" value="1" />
-    <button class="btn plus-btn">+</button>
-  </div>
-
-  <table style="border:1px solid gray;">
-  <div class="row justify-content-left">
-    <div class="col-md-6">
-    <div class="row">
-    <div class="col-sm d-flex justify-content-center"><p><img src='{{$produtoAvulso->image}}' width='100' height='100' /></p></div>
-
-    <div class="col-sm"><p>{{$produtoAvulso->title}}</p></div>
-
-    <div class="col-sm d-flex justify-content-center"><p style="font-weight:bold;">
-    Desconto: R${{$valorDescPorItem = $produtoAvulso->price * 0.2}}<br/>
-    Preço: R${{$produtoAvulso->price}}</p></div>
-</div>
-</div>
-</div>
-</table>
 
 </div>
 
@@ -136,12 +126,11 @@ function priceTotal() {
     let total = valueCount * {{$total}};
     let subtotal = valueCount * {{$total + $produtoAvulso->price}};
     let descontos = valueCount * {{$totalDesconto = $desconto + ($produtoAvulso->price * 0.2)}};
-    let total2 = valueCount * {{$valorTotal}}
-    let totalAvulso = valueCount * {{$valorTotal = $total - $totalDesconto}}
-    document.getElementById("price").innerText = "TOTAL: R$" + total;
-    document.getElementById("subt").innerText = "Subtotal: R$" + subtotal;
-    document.getElementById("desc").innerText = "Descontos: R$" + descontos;
-    document.getElementById("total").innerText = "Total: R$" + total2;    
+    let total2 = valueCount * {{$valorTotal + $produtoAvulso->price}}
+    document.getElementById("price").innerText = "TOTAL: R$" + parseFloat(total).toFixed(2);
+    document.getElementById("subt").innerText = "Subtotal: R$" + parseFloat(subtotal).toFixed(2);
+    document.getElementById("desc").innerText = "Descontos: R$" + parseFloat(descontos).toFixed(2);
+    document.getElementById("total").innerText = "Total: R$" + parseFloat(total2).toFixed(2);
 }
 document.querySelector('.plus-btn').addEventListener("click", function(){
     valueCount = document.getElementById("quantity").value;
@@ -164,6 +153,24 @@ document.querySelector('.minus-btn').addEventListener("click", function(){
 })
 
 </script>
+
+<script>
+    function registrarProduto() {
+        let totalCompra = document.getElementById('total').innerHTML
+        let descontosCompra = document.getElementById('desc').innerHTML
+        let subTotalCompra = document.getElementById('subt').innerHTML
+        let totalCompraKit = document.getElementById('price').innerHTML
+      registrar = [{
+        'Total da Compra': totalCompra,
+        'Subtotal da Compra': subTotalCompra,
+        'Descontos aplicados': descontosCompra,
+        'Total do Kit': totalCompraKit
+      }];
+
+      console.log(registrar)
+    }
+</script>
+
 </body>
 
 </html>
