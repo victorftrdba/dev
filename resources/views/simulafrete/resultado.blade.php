@@ -8,4 +8,4 @@
         }
 ?>
 
-<a href="/">Voltar</a>
+<a href="/" onclick="window.open('', '_self', ''); window.close();">Voltar</a>
