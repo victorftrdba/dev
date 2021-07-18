@@ -157,9 +157,6 @@ function target_popup(form) {
     form.target = 'formpopup';
 }
 
-</script>
-
-<script>
 document.querySelector('.minus-btn2').setAttribute("disabled", "disabled");
 let valueCount2;
 function priceTotal2() {
@@ -189,10 +186,8 @@ document.querySelector('.minus-btn2').addEventListener("click", function(){
     }
     priceTotal2()
 })
-</script>
 
-<script>
-    function purchaseRegister() {
+function purchaseRegister() {
         let totalPurchase = document.getElementById('total').innerHTML
         let discountsPurchase = document.getElementById('desc').innerHTML
         let subtotalPurchase = document.getElementById('subt').innerHTML
@@ -206,6 +201,7 @@ document.querySelector('.minus-btn2').addEventListener("click", function(){
 
       console.log(register)
     }
+
 </script>
 
 </body>
