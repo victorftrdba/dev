@@ -152,11 +152,6 @@ document.querySelector('.minus-btn').addEventListener("click", function(){
     priceTotal()
 })
 
-function target_popup(form) {
-    window.open('', 'formpopup', 'width=400,height=400,resizeable,scrollbars');
-    form.target = 'formpopup';
-}
-
 document.querySelector('.minus-btn2').setAttribute("disabled", "disabled");
 let valueCount2;
 function priceTotal2() {
@@ -200,7 +195,12 @@ function purchaseRegister() {
       }];
 
       console.log(register)
-    }
+}
+
+function target_popup(form) {
+    window.open('', 'formpopup', 'width=400,height=400,resizeable,scrollbars');
+    form.target = 'formpopup';
+}
 
 </script>
 
