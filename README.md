@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Rodando a Aplicação
+
+Para rodar a aplicação faça um git clone com o link do meu repositório através do seu terminal e depois de clonado digite os seguintes comandos:
+
+- composer install
+- npm install
+- php artisan serve (roda a aplicação)
+
+## Lembre-se de Ativar todas as Extensões necessárias no php.ini!
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
